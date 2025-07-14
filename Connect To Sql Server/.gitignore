@@ -1,0 +1,31 @@
+# Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+*.vsidx
+bin/
+obj/
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+.gitignore [unix] (10:55 14/07/2025)                                   0,0-1 All
+-- VISUAL BLOCK --                                                   1x1
+
