@@ -55,8 +55,10 @@ public class Program
 
     public static void Main(string[] args)
     {
-        PrintAllContacts();
+        // 1 -  bascis link   Print all contacts  
 
-       Console.ReadKey();
+        //PrintAllContacts();
+
+        Console.ReadKey();
     }
 }
