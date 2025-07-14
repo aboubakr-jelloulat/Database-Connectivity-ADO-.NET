@@ -129,16 +129,6 @@ dotnet test
 5. Open a Pull Request
 
 
-## 📞 Support
-
-If you have any questions or need help with this repository:
-
-- Create an issue in the GitHub repository
-- Check the documentation in the `docs/` folder
-- Review the example code in the `src/Examples/` directory
-
----
-
 **Happy Learning! 🚀**
 
 *This repository is designed for educational purposes to help developers master database operations with C# and ADO.NET.*
