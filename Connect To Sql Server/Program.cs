@@ -342,6 +342,46 @@ public class Program
     }
 
 
+
+    static string GetFirstName(int ContactID)
+    {
+
+        string firstName = string.Empty;
+
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string query = "SELECT FirstName FROM Contacts WHERE ContactID = @ContactID";
+
+        SqlCommand command = new SqlCommand(query, connection);
+
+        command.Parameters.AddWithValue("@ContactID", ContactID);
+
+        try
+        {
+            connection.Open();
+
+            object result = command.ExecuteScalar();
+
+            // ** ExecuteScalar() : It executes the query and returns only the value of the first column in the first row of the result.
+
+            if (result != null)
+            {
+                firstName = result.ToString();
+            }
+            else
+            {
+                firstName = "No contact found with the given ID";
+            }
+            connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+        
+        return firstName;
+    }
+
     public static void Main(string[] args)
     {
         //  ************   bascis link   Print all contacts   ***********
@@ -356,7 +396,9 @@ public class Program
         //  PrintAllContactsWithFirstNameAndCountry("jane", 1);
 
 
+
         //  ************** Parameterized Query With "Like"     **********
+
 
 
         //Console.WriteLine("--------Contacts starts with 'j'");
@@ -371,8 +413,12 @@ public class Program
 
 
 
+        // ***************   Retrieve a Single Value (ExecuteScalar) *************
 
 
-        Console.ReadKey();
+        //Console.WriteLine(GetFirstName(1));
+
+        //Console.ReadKey();
+
     }
 }
