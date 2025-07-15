@@ -192,6 +192,38 @@ public class Program
 
     }
 
+    static void DeleteContactWithInStatement(string ContactIDs)
+    {
+        SqlConnection connection = new SqlConnection(connectionString);
+        string query = @"Delete Contacts 
+                                where ContactID in (" + ContactIDs + ")";
+        SqlCommand command = new SqlCommand(query, connection);
+
+        try
+        {
+            connection.Open();
+
+            int rowsAffected = command.ExecuteNonQuery();
+
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Records Deleted successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Records Delete failed.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+        
+        connection.Close();
+    }
+
+
+
     public static void Main(string[] args)
     {
         //  *********** insert / Add   Data *************
@@ -268,6 +300,13 @@ public class Program
 
 
         // DeleteContact(5);
+
+
+        // delete with in stetment
+
+
+        DeleteContactWithInStatement("2008, 6, 7");
+
 
 
 
