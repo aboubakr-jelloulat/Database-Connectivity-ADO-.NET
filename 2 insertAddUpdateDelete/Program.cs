@@ -157,6 +157,41 @@ public class Program
 
     }
 
+
+    static void DeleteContact(int ContactID)
+    {
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string query = @"Delete Contacts 
+                                where ContactID = @ContactID";
+
+        SqlCommand command = new SqlCommand(query, connection);
+
+        command.Parameters.AddWithValue("@ContactID", ContactID);
+
+        try
+        {
+            connection.Open();
+
+            int rowsAffected = command.ExecuteNonQuery();
+
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Record Deleted successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Record Delete failed.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+
+    }
+
     public static void Main(string[] args)
     {
         //  *********** insert / Add   Data *************
@@ -225,6 +260,15 @@ public class Program
 
 
         */
+
+
+
+
+        // ***********  Delete data  *************
+
+
+        // DeleteContact(5);
+
 
 
         Console.ReadKey();
