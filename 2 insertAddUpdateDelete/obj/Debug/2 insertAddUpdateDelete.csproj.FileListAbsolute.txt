@@ -1,0 +1,8 @@
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\bin\Debug\2 insertAddUpdateDelete.exe.config
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\bin\Debug\2 insertAddUpdateDelete.exe
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\bin\Debug\2 insertAddUpdateDelete.pdb
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\obj\Debug\2 insertAddUpdateDelete.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\obj\Debug\2 insertAddUpdateDelete.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\obj\Debug\2 insertAddUpdateDelete.exe
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\obj\Debug\2 insertAddUpdateDelete.pdb
+C:\Users\HP\Desktop\c#\2 insertAddUpdateDelete\obj\Debug\2 insertAddUpdateDelete.exe.config
