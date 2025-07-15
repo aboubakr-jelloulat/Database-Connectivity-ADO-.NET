@@ -63,6 +63,51 @@ public class Program
         connection.Close();
   
     }
+
+    static void AddNewContactAndGetID(stContact newContact)
+    {
+
+
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string query = @"INSERT INTO Contacts (FirstName, LastName, Email, Phone, Address, CountryID)
+                             VALUES (@FirstName, @LastName, @Email, @Phone, @Address, @CountryID);
+                             SELECT SCOPE_IDENTITY();";
+
+        // SCOPE_IDENTITY() is a SQL Server function that returns the last identity value (auto-increment ID) inserted into a table in the current session and scope
+
+        SqlCommand command = new SqlCommand(query, connection);
+
+        command.Parameters.AddWithValue("@FirstName", newContact.FirstName);
+        command.Parameters.AddWithValue("@LastName", newContact.LastName);
+        command.Parameters.AddWithValue("@Email", newContact.Email);
+        command.Parameters.AddWithValue("@Phone", newContact.Phone);
+        command.Parameters.AddWithValue("@Address", newContact.Address);
+        command.Parameters.AddWithValue("@CountryID", newContact.CountryID);
+
+        try
+        {
+            connection.Open();
+            object result = command.ExecuteScalar();
+            // "Execute the query and get the first value of the first row of the result."
+
+            if (result != null && int.TryParse(result.ToString(), out int insertedID))
+            {
+                Console.WriteLine($"Newly inserted ID: {insertedID}");
+            }
+            else
+            {
+                Console.WriteLine("Failed to retrieve the inserted ID.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+
+    }
+
     public static void Main(string[] args)
     {
         //  *********** insert / Add   Data *************
@@ -90,10 +135,21 @@ public class Program
 
 
 
+        // ***********  Retrieve Auto number after inserting/adding data *************
 
 
 
+        stContact Contact = new stContact
+        {
+            FirstName = "Sander",
+            LastName = "Bos",
+            Email = "sander@gmail.com",
+            Phone = "1234567890",
+            Address = "javastreet, Amsterdamm Netherlands",
+            CountryID = 1
+        };
 
+        AddNewContactAndGetID(Contact);
 
 
         Console.ReadKey();
