@@ -381,6 +381,60 @@ public class Program
         
         return firstName;
     }
+    
+    
+    public struct stContact
+    {
+        public int ID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string CountryID { get; set; }
+    }
+    static bool FindContactById(int contactId, ref stContact contact)
+    {
+        bool found = false;
+
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string query = "SELECT * FROM Contacts WHERE ContactID = @ContactID";
+
+        SqlCommand command = new SqlCommand(query, connection);
+
+        command.Parameters.AddWithValue("@ContactID", contactId);
+
+        try
+        {
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                found = true;
+                contact.ID = (int)reader["ContactID"];
+                contact.FirstName = reader["FirstName"].ToString();
+                contact.LastName = reader["LastName"].ToString();
+                contact.Email = reader["Email"].ToString();
+                contact.Phone = reader["Phone"].ToString();
+                contact.Address = reader["Address"].ToString();
+                contact.CountryID = reader["CountryID"].ToString();
+            }
+            else
+            {
+                found = false;
+            }
+
+            reader.Close();
+            connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+        return found;
+    }
+
 
     public static void Main(string[] args)
     {
@@ -419,6 +473,27 @@ public class Program
         //Console.WriteLine(GetFirstName(1));
 
         //Console.ReadKey();
+
+
+
+        // *********   Find Single Contact  ****
+       
+        //stContact contact = new stContact();
+
+        //if (FindContactById(19, ref contact))
+        //{
+        //    Console.WriteLine($"Contact ID: {contact.ID}");
+        //    Console.WriteLine($"Name: {contact.FirstName}  {contact.LastName}");
+        //    Console.WriteLine($"Email: {contact.Email}");
+        //    Console.WriteLine($"Phone: {contact.Phone}");
+        //    Console.WriteLine($"Address: {contact.Address}");
+        //    Console.WriteLine($"Country ID: {contact.CountryID}");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Contact not found.");
+        //}
+
 
     }
 }
